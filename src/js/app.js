@@ -114,18 +114,18 @@ App = {
 
   addPage: function() {
     var pageName = $('#pageName').val();
-    var pageHash = $('#pageHash').val();
     var duplicate = false;
 
     App.contracts.Wiki.deployed().then(function(instance) {
       wikiInstance = instance;
       return wikiInstance.pagesCount();
     }).then(function(pagesCount) {
-      for (let i = 0; i < pagesCount; i++) {
+      for (let i = 0; i <= pagesCount; i++) {
         wikiInstance.pages(i).then(function(page) {
           if (pageName == page[1]) {
             duplicate = true;
-          } else if (i == pagesCount - 1 && duplicate == false) {
+            console.log("Duplicate Name Found!");
+          } else if (i == pagesCount && duplicate == false) {
             // Wait for pages to update
             $("#content").hide();
             $("#loader").show();

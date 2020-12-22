@@ -21,7 +21,7 @@ App = {
       // Specify default instance if no web3 instance provided
       App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545');
       web3 = new Web3(App.web3Provider);
-      window.ethereum.catch(error => {
+      window.ethereum.enable().catch(error => {
         // User denied account access
         console.log(error)
       })
@@ -30,7 +30,7 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON("Wiki.json", function(wiki) {
+    $.getJSON("../build/contracts/Wiki.json", function(wiki) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Wiki = TruffleContract(wiki);
       // Connect provider to interact with contract

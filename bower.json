@@ -1,7 +1,7 @@
 {
   "name": "wiki",
   "description": "",
-  "main": "",
+  "main": "src/**/*.js",
   "license": "ISC",
   "homepage": "",
   "ignore": [

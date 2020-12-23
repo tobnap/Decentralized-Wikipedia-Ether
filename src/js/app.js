@@ -97,12 +97,12 @@ App = {
 
           $('<a/>', {
               text: name,
-              href: '/view.html/' + ipfshash
+              href: 'view.html?' + ipfshash
           }).appendTo('.block:last');
 
           $('<a/>', {
             text: ' edit',
-            href: '/edit/' + ipfshash
+            href: 'edit?' + ipfshash
           }).appendTo('.block:last');
         });
       }
@@ -141,12 +141,6 @@ App = {
   }
 };
 
-$(function() {
-  $(window).on('load', function(){ 
-    App.init();
-  });
-});
-
 async function createFile (text) {
   const node = await Ipfs.create();
   const { path } = await node.add(text);
@@ -157,7 +151,7 @@ async function createFile (text) {
 }
 
 async function getFile (cid) {
-  const node = await window.ipfs.create();
+  const node = await window.Ipfs.create();
 
   const stream = node.cat(cid);
   let data = '';

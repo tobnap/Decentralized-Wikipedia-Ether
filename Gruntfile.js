@@ -37,7 +37,8 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'jquery/dist/jquery.min.js': 'jquery/dist/jquery.min.js',
-                    'web3/dist/web3.min.js': 'web3/dist/web3.min.js'
+                    'web3/dist/web3.min.js': 'web3/dist/web3.min.js',
+                    'marked/lib/marked.js': 'marked/lib/marked.js'
                 },
             }
         },
@@ -65,5 +66,7 @@ module.exports = function(grunt) {
         grunt.log.header('Copying files');
         grunt.task.run('copy');
         grunt.task.run('bowercopy');
+        grunt.log.header('Uploading files to IPFS');
+        grunt.task.run('exec');
     });
 };

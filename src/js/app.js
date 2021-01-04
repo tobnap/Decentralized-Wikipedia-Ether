@@ -97,12 +97,12 @@ App = {
 
           $('<a/>', {
               text: name,
-              href: 'view.html?' + ipfshash
+              href: 'view.html?' + ipfshash + '-' + name
           }).appendTo('.block:last');
 
           $('<a/>', {
             text: ' edit',
-            href: 'edit?' + ipfshash
+            href: 'edit.html?' + ipfshash + '-' + name
           }).appendTo('.block:last');
         });
       }
@@ -114,6 +114,7 @@ App = {
 
   addPage: function() {
     var pageName = $('#pageName').val();
+    var pageContents = $('#editbox').val();
     var duplicate = false;
 
     App.contracts.Wiki.deployed().then(function(instance) {
@@ -129,9 +130,15 @@ App = {
             // Wait for pages to update
             $("#content").hide();
             $("#loader").show();
-            createFile("# test").then(hash => {
-              return wikiInstance.addPage(pageName, hash, { from: App.account });
-            });
+            if (pageContents == null) {
+              createFile("# test").then(hash => {
+                return wikiInstance.addPage(pageName, hash, { from: App.account });
+              });
+            } else {
+              createFile(pageContents).then(hash => {
+                return wikiInstance.addPage(pageName, hash, { from: App.account });
+              });
+            }
           }
         });
       }

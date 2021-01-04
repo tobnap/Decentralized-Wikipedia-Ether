@@ -5,31 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Test</title>
+
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/web3/dist/web3.min.js"></script>
     <script src="../bower_components/marked/lib/marked.js"></script>
     <!-- endbower -->
     <script src="js/app.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/edit.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/truffle-contract@4.0.31/dist/truffle-contract.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
   </head>
   <body>
-    <div id="container" style="width: 650px;">
-      <h1 class="text-center">Page Results</h1>
+    <div class="container" style="width: 650px;">
       <div id="loader">
         <p class="text-center">Loading...</p>
       </div>
       <div id="content" style="display: none;">
+        <textarea id='editbox'></textarea>
         <form onSubmit="App.addPage(); return false;">
-          <label>Name:</label><br>
-          <input type="text" id="pageName"><br>
-          <button type="submit" class="btn btn-primary">Add page</button>
+            <input type="text" id="pageName" style="display: none;"><br>
+            <button type="submit" class="btn btn-primary">Update page</button>
         </form>
-        <p id="accountAddress" class="text-center"></p>
       </div>
+      <p id="accountAddress" class="text-center"></p>
     </div>
-    <div id="md-container"></div>
   </body>
 </html>
